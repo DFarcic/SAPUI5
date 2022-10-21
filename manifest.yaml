@@ -1,0 +1,5 @@
+---
+applications:
+- name: zui5sd_leads
+  memory: 64M
+  buildpack: staticfile_buildpack
