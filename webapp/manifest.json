@@ -15,7 +15,7 @@
 		},
 		"dataSources": {
 			"ZCDSSD_TAXJURCODE_CDS": {
-				"uri": "/sap/opu/odata/sap/ZCDSSD_TAXJURCODE_CDS/",
+				"uri": "/api",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
