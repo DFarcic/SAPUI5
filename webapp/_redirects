@@ -1,1 +1,1 @@
-/api* https://vhreads4ci.hec.rmp.com.br:44300/sap/opu/odata/sap/ZCDSSD_TAXJURCODE_CDS/:splat 200
+/api/* https://vhreads4ci.hec.rmp.com.br:44300/sap/opu/odata/sap/ZCDSSD_TAXJURCODE_CDS/:splat 200
