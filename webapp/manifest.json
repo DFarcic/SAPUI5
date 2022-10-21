@@ -15,7 +15,7 @@
 		},
 		"dataSources": {
 			"ZCDSSD_TAXJURCODE_CDS": {
-				"uri": "/api/",
+				"uri": "xuxuzinho",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
