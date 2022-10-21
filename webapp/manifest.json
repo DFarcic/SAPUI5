@@ -23,7 +23,7 @@
 				}
 			},
 			"ZGWSD_LEADS_SRV": {
-				"uri": "/api",
+				"uri": "/bpi",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
