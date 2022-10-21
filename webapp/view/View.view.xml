@@ -1,0 +1,93 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="zui5sd_leadszui5sd_leads.controller.View" displayBlock="true">
+	<App>
+		<pages>
+			<Page>
+				<customHeader>
+					<Bar>
+						<contentMiddle>
+							<Title text="Cadastro de Clientes" textAlign="Center" titleStyle="H3"/>
+						</contentMiddle>
+					</Bar>
+				</customHeader>
+				<subHeader>
+					<Toolbar width="100%">
+						<content>
+							<HBox width="100%" alignItems="Center" justifyContent="SpaceBetween">
+								<items>
+									<ObjectHeader title="Douglas Farcic" intro="Representante/Vendedor" responsive="true" titleLevel="H4"/>
+									<RatingIndicator maxValue="5" id="irating" editable="false" enabled="false" visualMode="Full" iconSize="25px"/>
+									<Button icon="sap-icon://add-photo" press=".onPhoto"/>
+								</items>
+							</HBox>
+						</content>
+					</Toolbar>
+				</subHeader>
+				<content>
+					<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true"
+						layout="ResponsiveGridLayout">
+						<sap.ui.layout.form:content>
+							<Text text="Tipo de Pessoa:" textAlign="Center"/>
+							<RadioButtonGroup columns="2" valueState="Information">
+								<buttons>
+									<RadioButton text="Jurídica" id="rdbJ" select="onSelectJ"/>
+									<RadioButton text="Física" id="rdbF" select="onSelectF"/>
+								</buttons>
+							</RadioButtonGroup>
+							<Label text="CNPJ" width="100%" id="lcnpj" required="true"/>
+							<MaskInput id="icnpj" placeholder="Informe o CNPJ..." mask="99.999.999/9999-99" placeholderSymbol="_"/>
+							<Label text="CPF" width="100%" id="lcpf" required="true"/>
+							<MaskInput id="icpf" placeholder="Informe o CPF..." required="true" mask="999.999.999-99" placeholderSymbol="_"/>
+							<Label id="lname1" text="Razão Social" width="100%" required="true"/>
+							<Input id="iname1" placeholder="Informe a Razão Social..." required="true"/>
+							<Label text="Cidade/Estado" width="100%" required="true"/>
+							<HBox width="100%" renderType="Bare">
+								<items>
+									<Input id="icity" placeholder="Informe a cidade/estado..." required="true" showSuggestion="true" textFormatMode="ValueKey"
+										suggest="onSuggest" suggestionItemSelected="onSuggestionItemTaxjurcode" maxSuggestionWidth="70%" showTableSuggestionValueHelp="false"
+										suggestionRows="{taxjurcodeSH>/ZCDSSD_TAXJURCODE}">
+										<suggestionColumns>
+											<Column popinDisplay="Inline" demandPopin="true">
+												<Label text="Cidade"/>
+											</Column>
+											<Column popinDisplay="Inline" demandPopin="true" width="15%">
+												<Label text="Estado"/>
+											</Column>
+										</suggestionColumns>
+										<suggestionRows>
+											<ColumnListItem>
+												<Label text="{taxjurcodeSH>city}"/>
+												<Label text="{taxjurcodeSH>region}"/>
+											</ColumnListItem>
+										</suggestionRows>
+									</Input>
+								</items>
+							</HBox>
+							<Label text="Telefone" width="100%" required="true"/>
+							<MaskInput id="iphone" placeholder="Informe o telefone..." required="true" mask="(99) 99999-9999" placeholderSymbol="_"/>
+							<Label text="E-mail" width="100%" required="true"/>
+							<Input id="iemail" placeholder="Informe o e-mail..." required="true" type="Email"/>
+							<HBox width="100%" renderType="Bare" justifyContent="SpaceBetween">
+								<items>
+									<ToggleButton text="Prédio próprio" width="30%" icon="sap-icon://building" type="Reject" press="onToggle"/>
+									<ToggleButton text="Cadastro" width="30%" icon="sap-icon://person-placeholder" type="Reject" press="onToggle"/>
+									<ToggleButton text="Previsão pedido" width="30%" icon="sap-icon://sales-document" type="Reject" press="onToggle"/>
+								</items>
+							</HBox>
+							<Label text="Observações" width="100%"/>
+							<TextArea rows="3" id="area0"/>
+						</sap.ui.layout.form:content>
+					</sap.ui.layout.form:SimpleForm>
+				</content>
+				<footer>
+					<Bar>
+						<contentRight>
+							<Button text="Enviar cadastro" type="Accept" press=".onSave"/>
+							<Button text="Cancelar" type="Reject" press=".onCancel"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
