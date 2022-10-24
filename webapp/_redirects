@@ -1,1 +1,5 @@
-/api https://vhreads4ci.hec.rmp.com.br:44300/sap/opu/odata/sap/ZCDSSD_TAXJURCODE_CDS/
+# Redirects from what the browser requests to what we serve
+/home              /
+/blog/my-post.php  /blog/my-post
+/news              /blog
+/api               https://vhreads4ci.hec.rmp.com.br:44300/sap/opu/odata/sap/ZCDSSD_TAXJURCODE_CDS/
