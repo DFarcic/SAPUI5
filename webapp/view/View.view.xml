@@ -69,9 +69,9 @@
 							<Input id="iemail" placeholder="Informe o e-mail..." required="true" type="Email"/>
 							<HBox width="100%" renderType="Bare" justifyContent="SpaceBetween">
 								<items>
-									<ToggleButton text="Prédio próprio" width="30%" icon="sap-icon://building" type="Reject" press="onToggle"/>
-									<ToggleButton text="Cadastro" width="30%" icon="sap-icon://person-placeholder" type="Reject" press="onToggle"/>
-									<ToggleButton text="Previsão pedido" width="30%" icon="sap-icon://sales-document" type="Reject" press="onToggle"/>
+									<ToggleButton text="Prédio próprio" width="32%" icon="sap-icon://building" type="Reject" press="onToggle"/>
+									<ToggleButton text="Cadastro" width="32%" icon="sap-icon://person-placeholder" type="Reject" press="onToggle"/>
+									<ToggleButton text="Previsão pedido" width="32%" icon="sap-icon://sales-document" type="Reject" press="onToggle"/>
 								</items>
 							</HBox>
 							<Label text="Observações" width="100%"/>
@@ -82,8 +82,8 @@
 				<footer>
 					<Bar>
 						<contentRight>
-							<Button text="Enviar cadastro" type="Accept" press=".onSave"/>
-							<Button text="Cancelar" type="Reject" press=".onCancel"/>
+							<Button text="Cadastrar" type="Accept" icon="sap-icon://save" press=".onSave"/>
+							<Button text="Cancelar" type="Reject" icon="sap-icon://cancel" press=".onCancel"/>
 						</contentRight>
 					</Bar>
 				</footer>
