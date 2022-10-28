@@ -1,2 +1,2 @@
 /sapui5-leads.netlify.app/api*  /vhreads4ci.hec.rmp.com.br:44300/sap/opu/odata/sap/ZCDSSD_TAXJURCODE_CDS/ZCDSSD_TAXJURCODE?$metadata&sap-language=PT
-*/bpi /vhreads4ci.hec.rmp.com.br:44300/sap/opu/odata/sap/ZGWSD_LEADS_SRV/leadSet?$metadata
+/bpi* /vhreads4ci.hec.rmp.com.br:44300/sap/opu/odata/sap/ZGWSD_LEADS_SRV/leadSet?$metadata
