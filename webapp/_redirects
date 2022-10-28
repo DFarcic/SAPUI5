@@ -1,1 +1,2 @@
 /sapui5-leads.netlify.app/api*  /vhreads4ci.hec.rmp.com.br:44300/sap/opu/odata/sap/ZCDSSD_TAXJURCODE_CDS/$metadata?sap-language=PT  200
+/api* /index.html 200
