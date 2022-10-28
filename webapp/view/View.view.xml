@@ -26,12 +26,15 @@
 				<content>
 					<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true"
 						layout="ResponsiveGridLayout">
+						<sap.ui.layout.form:title>
+							<sap.ui.core:Title text="Dados Básicos" id="title3"/>
+						</sap.ui.layout.form:title>
 						<sap.ui.layout.form:content>
 							<Text text="Tipo de Pessoa:" textAlign="Center"/>
 							<RadioButtonGroup columns="2" valueState="Information">
 								<buttons>
-									<RadioButton text="Jurídica" id="rdbJ" select="onSelectJ"/>
-									<RadioButton text="Física" id="rdbF" select="onSelectF"/>
+									<RadioButton text="Jurídica" id="rdbJ" select=".onSelectJ"/>
+									<RadioButton text="Física" id="rdbF" select=".onSelectF"/>
 								</buttons>
 							</RadioButtonGroup>
 							<Label text="CNPJ" width="100%" id="lcnpj" required="true"/>
@@ -65,25 +68,47 @@
 							</HBox>
 							<Label text="Telefone" width="100%" required="true"/>
 							<MaskInput id="iphone" placeholder="Informe o telefone..." required="true" mask="(99) 99999-9999" placeholderSymbol="_"/>
+							<Label text="WhatsApp" width="100%"/>
+							<MaskInput id="iwhats" placeholder="Informe o whatsapp..." mask="(99) 99999-9999" placeholderSymbol="_"/>
 							<Label text="E-mail" width="100%" required="true"/>
 							<Input id="iemail" placeholder="Informe o e-mail..." required="true" type="Email"/>
-							<HBox width="100%" renderType="Bare" justifyContent="SpaceBetween">
-								<items>
-									<ToggleButton text="Prédio próprio" width="30%" icon="sap-icon://building" type="Reject" press="onToggle"/>
-									<ToggleButton text="Cadastro" width="30%" icon="sap-icon://person-placeholder" type="Reject" press="onToggle"/>
-									<ToggleButton text="Previsão pedido" width="30%" icon="sap-icon://sales-document" type="Reject" press="onToggle"/>
-								</items>
-							</HBox>
+						</sap.ui.layout.form:content>
+					</sap.ui.layout.form:SimpleForm>
+					<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true"
+						layout="ResponsiveGridLayout" id="__form1">
+						<sap.ui.layout.form:content>
+							<Label text="Nome" width="100%"/>
+							<Input id="iname1_ref" placeholder="Informe o nome do contato..."/>
+							<Label text="Telefone" width="100%"/>
+							<MaskInput id="iphone_ref" placeholder="Informe o telefone do contato..." mask="(99) 99999-9999" placeholderSymbol="_"/>
+						</sap.ui.layout.form:content>
+						<sap.ui.layout.form:title>
+							<sap.ui.core:Title text="Contato" id="__title2"/>
+						</sap.ui.layout.form:title>
+					</sap.ui.layout.form:SimpleForm>
+					<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true"
+						layout="ResponsiveGridLayout" id="__form2">
+						<sap.ui.layout.form:content>
 							<Label text="Observações" width="100%"/>
 							<TextArea rows="3" id="area0"/>
+							<HBox width="100%" renderType="Bare" justifyContent="SpaceBetween">
+								<items>
+									<ToggleButton text="Prédio próprio" width="32%" icon="sap-icon://building" type="Reject" press="onToggle"/>
+									<ToggleButton text="Cadastro" width="32%" icon="sap-icon://person-placeholder" type="Reject" press="onToggle"/>
+									<ToggleButton text="Previsão pedido" width="32%" icon="sap-icon://sales-document" type="Reject" press="onToggle"/>
+								</items>
+							</HBox>
 						</sap.ui.layout.form:content>
+						<sap.ui.layout.form:title>
+							<sap.ui.core:Title text="Observações" id="__title3"/>
+						</sap.ui.layout.form:title>
 					</sap.ui.layout.form:SimpleForm>
 				</content>
 				<footer>
 					<Bar>
 						<contentRight>
-							<Button text="Enviar cadastro" type="Accept" press=".onSave"/>
-							<Button text="Cancelar" type="Reject" press=".onCancel"/>
+							<Button text="Cadastrar" type="Accept" icon="sap-icon://save" press=".onSave"/>
+							<Button text="Cancelar" type="Reject" icon="sap-icon://cancel" press=".onCancel"/>
 						</contentRight>
 					</Bar>
 				</footer>
