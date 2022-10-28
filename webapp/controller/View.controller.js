@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
 	"sap/m/MessageBox",
-	"sap/ui/core/BusyIndicator"
-], function(Controller, MessageToast, MessageBox, BusyIndicator) {
+	"sap/ui/core/BusyIndicator",
+	"sap/m/Dialog"
+], function(Controller, MessageToast, MessageBox, BusyIndicator, Dialog) {
 	"use strict";
 
 	return Controller.extend("zui5sd_leadszui5sd_leads.controller.View", {
@@ -12,7 +13,6 @@ sap.ui.define([
 			this.getView().byId("icnpj").setVisible(true);
 			this.getView().byId("lcpf").setVisible(false);
 			this.getView().byId("icpf").setVisible(false);
-			//			this.getView().byId("itaxjurcode").setSuggestionRowValidator(this.suggestionRowValidator);
 		},
 
 		onSelectJ: function() {
@@ -32,15 +32,7 @@ sap.ui.define([
 			this.getView().byId("lname1").setText("Nome");
 			this.getView().byId("iname1").setPlaceholder("Informe o nome...");
 		},
-		/*
-				suggestionRowValidator: function (oColumnListItem) {
-					var aCells = oColumnListItem.getCells();
-					return new sap.ui.core.Item({
-						key: aCells[0].getText(),
-						text: aCells[1].getText()
-					});
-				},
-		*/
+
 		onSuggest: function(oEvent) {
 			var sValue = oEvent.getParameters().suggestValue,
 				aFilters = [];
@@ -81,6 +73,72 @@ sap.ui.define([
 			}
 		},
 
+		onPhoto: function(oEvent) {
+
+			var that = this;
+
+			this.dialog = new Dialog({
+				title: "Tire uma foto!",
+				state: sap.ui.core.ValueState.Information,
+				beginButton: new sap.m.Button({
+					type: "Accept",
+					icon: "sap-icon://camera",
+					press: function(oEvent) {
+						that.imageValue = document.getElementById("player");
+						that.dialog.close();
+					}
+				}),
+				content: [
+					new sap.ui.core.HTML({
+						content: "<video id='player' autoplay></video>"
+					})
+				],
+				endButton: new sap.m.Button({
+					type: "Reject",
+					icon: "sap-icon://cancel",
+					press: function(oEvent) {
+						that.dialog.close();
+					}
+				})
+			});
+			this.getView().addDependent(this.dialog);
+			this.dialog.open();
+			this.dialog.attachBeforeClose(this.setImage, this);
+
+			var handleSuccess = function(stream) {
+				player.srcObject = stream;
+			};
+
+			navigator.mediaDevices.getUserMedia({
+				video: true
+			}).then(handleSuccess);
+
+		},
+
+		setImage: function() {
+
+			var oVBox = this.getView().byId("iphoto");
+			var items = oVBox.getItems();
+			var snapId = 'rk-' + items.length;
+			var textId = snapId + '-text';
+			var imageVal = this.imageVal;
+			//Set that as a canvas  element on HTML page
+			var oCanvas = new sap.ui.core.HTML({
+				content: "<canvas id='" + snapId + "' width='320px' heght='320px'" +
+					"style='2px solid red '></canvas>" +
+					"<label id='" + textId + "'>" + this.attachName + "</label>"
+			});
+			oVBox.addItem(oCanvas);
+			oCanvas.addEventDelegate({
+				onAfterRendering: function() {
+					var snapShotCanvas = document.getElementById(snapId);
+					var oContext = snapShotCanvas.getContext('2d');
+					oContext.drawImage(imageVal, 0, 0, snapShotCanvas.width, snapShotCanvas.height);
+				}
+			});
+
+		},
+
 		onSave: function(oEvent) {
 			/*
 						if (this.getView().byId("rdbJ").getSelected(true) && this.getView().byId("icnpj").getValue() === "") {
@@ -107,16 +165,35 @@ sap.ui.define([
 							this.getView().byId("iname1").setValueState(sap.ui.core.ValueState.Error);
 							return;
 						}
+						
+						if (this.getView().byId("icity").getValue() === "") {
+							MessageBox.error("Cidade/Estado não informado!");
+							this.getView().byId("icity").setValueState(sap.ui.core.ValueState.Error);
+							return;
+						}						
+
+						if (this.getView().byId("iphone").getValue() === "") {
+							MessageBox.error("Telefone não informado!");
+							this.getView().byId("iphone").setValueState(sap.ui.core.ValueState.Error);
+							return;
+						}	
+
+						if (this.getView().byId("iemail").getValue() === "") {
+							MessageBox.error("E-mail não informado!");
+							this.getView().byId("iemail").setValueState(sap.ui.core.ValueState.Error);
+							return;
+						}	
 			*/
 			BusyIndicator.show(0);
 
 			var oLead = {
 				cgc: (this.getView().byId("rdbJ").getSelected() ? this.getView().byId("icnpj").getValue() : this.getView().byId("icpf").getValue()),
+				type: (this.getView().byId("rdbJ").getSelected() ? "J" : "F"),
 				name: this.getView().byId("iname1").getValue(),
 				region: this.getView().byId("icity").getValue().split("/")[1],
 				city: this.getView().byId("icity").getValue().split("/")[0],
 				phone: this.getView().byId("iphone").getValue(),
-				email: this.getView().byId("iemail").getValue()				
+				email: this.getView().byId("iemail").getValue()
 			};
 
 			var oModel = this.getView().getModel("leadSRV");
